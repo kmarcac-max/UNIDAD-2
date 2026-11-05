@@ -1,0 +1,126 @@
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+// CLASE BASE: VEHICULO
+class Vehiculo {
+protected:
+    string numeroPlaca;
+    string color;
+    string marca;
+    int velocimetro;
+
+public:
+	
+    Vehiculo(string placa, string col, string mar, int vel)
+        : numeroPlaca(placa), color(col), marca(mar),
+          velocimetro(vel) {
+    }
+
+    void mostrarDatos() {
+        cout << "\nNumero de placa: " << numeroPlaca;
+        cout << "\nColor: " << color;
+        cout << "\nMarca: " << marca;
+        cout << "\nVelocidad: " << velocimetro << " km/h";
+    }
+
+    void cambiarVelocidad(int nuevaVelocidad) {
+        velocimetro = nuevaVelocidad;
+        cout << "\nVelocidad actualizada correctamente.\n";
+    }
+};
+
+class Automovil : public Vehiculo {
+private:
+    int cantidadPuertas;
+    int cantidadPasajeros;
+
+public:
+    Automovil(string placa, string col, string mar, int vel,
+              int puertas, int pasajeros)
+        : Vehiculo(placa, col, mar, vel),
+          cantidadPuertas(puertas),
+          cantidadPasajeros(pasajeros) {
+    }
+
+        mostrarDatos();
+        cout << "\nCantidad de puertas: " << cantidadPuertas;
+        cout << "\nCantidad de pasajeros: " << cantidadPasajeros;
+        cout << endl;
+    }
+
+    void subirPasajeros(int cantidad) {
+        cantidadPasajeros += cantidad;
+        cout << "\nPasajeros agregados correctamente.\n";
+    }
+
+    void bajarPasajeros(int cantidad) {
+        if (cantidad <= cantidadPasajeros && cantidad >= 0) {
+            cantidadPasajeros -= cantidad;
+            cout << "\nPasajeros retirados correctamente.\n";
+        } else {
+            cout << "\nCantidad de pasajeros no valida.\n";
+        }
+    }
+};
+
+class Camion : public Vehiculo {
+private:
+    float carga;
+
+public:
+
+    Camion(string placa, string col, string mar, int vel,
+           float car)
+        : Vehiculo(placa, col, mar, vel),
+          carga(car) {
+    }
+
+    void mostrarCamion() {
+        cout << "\n--- DATOS DEL CAMION ---";
+        mostrarDatos();
+        cout << "\nCarga: " << carga << " toneladas";
+        cout << endl;
+    }
+
+    void cambiarCarga(float nuevaCarga) {
+        if (nuevaCarga >= 0) {
+            carga = nuevaCarga;
+            cout << "\nCarga actualizada correctamente.\n";
+        } else {
+            cout << "\nLa carga no puede ser negativa.\n";
+        }
+    }
+};
+
+
+int main() {
+
+    Automovil auto1("ABC-123", "Rojo", "Toyota", 80, 4, 5);
+
+    Camion camion1("XYZ-789", "Blanco", "Volvo", 60, 12.5);
+
+
+    cout << "\n       DATOS INICIALES";
+
+
+    auto1.mostrarAutomovil();
+    camion1.mostrarCamion();
+    cout << "\n    MODIFICAR AUTOMOVIL";
+
+    auto1.cambiarVelocidad(120);
+    auto1.subirPasajeros(2);
+    
+    cout << "\n      MODIFICAR CAMION";
+
+    camion1.cambiarVelocidad(90);
+    camion1.cambiarCarga(18.5);
+	cout << "\n       DATOS ACTUALIZADOS";
+
+
+    auto1.mostrarAutomovil();
+    camion1.mostrarCamion();
+
+    return 0;
+}
