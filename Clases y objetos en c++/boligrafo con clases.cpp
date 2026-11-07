@@ -18,9 +18,9 @@ public:
     string getColor() {
         return color;
     }
-    bool setColor(string nuevoColor) {
+    bool setColor(string nuevocolor) {
 
-        if (nuevoColor == "azul" ||nuevoColor == "rojo" || nuevoColor == "verde" || nuevoColor == "negro") {
+        if (nuevocolor == "azul" ||nuevocolor == "rojo" || nuevocolor == "verde" || nuevocolor == "negro") {
             color = nuevoColor;
             return true;
         }
@@ -62,7 +62,7 @@ int main() {
     Boligrafo lapicero;
     int opcion;
     int unidades;
-    string nuevoColor;
+    string nuevocolor;
 
     do {
         cout << "            MENU BOLIGRAFO          "<<endl;
@@ -110,8 +110,8 @@ int main() {
                 break;
             case 3:
                 cout << "ingrese el nuevo color: ";
-                cin >> nuevoColor;
-                if (lapicero.setColor(nuevoColor)) {
+                cin >> nuevocolor;
+                if (lapicero.setColor(nuevocolor)) {
                   cout << "color cambiado correctamente." << endl;
                 }
                 else {
